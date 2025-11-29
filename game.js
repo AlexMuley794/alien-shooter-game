@@ -25,14 +25,14 @@ alienImage.src = 'images/alien.png'; // Asegúrate de que la ruta sea correcta
 shotImage.src = 'images/disparo.png'; // Asegúrate de que la ruta sea correcta
 
 // Comprobar si las imágenes se cargaron correctamente
-shipImage.onload = function() {
+shipImage.onload = function () {
     console.log('Imagen de la nave cargada');
-    initGame(); 
+    initGame();
 };
-alienImage.onload = function() {
+alienImage.onload = function () {
     console.log('Imagen de los aliens cargada');
 };
-shotImage.onload = function() {
+shotImage.onload = function () {
     console.log('Imagen del disparo cargada');
 };
 
@@ -222,6 +222,7 @@ window.addEventListener('keydown', (e) => {
     } else if (e.key === "ArrowRight") {
         keys.right = true;
     } else if (e.key === " " || e.key === "ArrowUp") {  // Tecla de disparo (espacio o flecha arriba)
+        e.preventDefault(); // Evitar el comportamiento por defecto (scroll o clic en botones)
         createShot();  // Crear un disparo
     }
 });
@@ -261,4 +262,7 @@ document.getElementById('pauseButton').addEventListener('click', () => {
     }
 });
 
-document.getElementById('restartButton').addEventListener('click', restartGame); // Reiniciar el juego
+document.getElementById('restartButton').addEventListener('click', function () {
+    restartGame();
+    this.blur(); // Quitar el foco del botón para que el espacio no lo vuelva a activar
+}); // Reiniciar el juego
