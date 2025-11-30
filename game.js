@@ -247,9 +247,16 @@ function createShot() {
     shots.push(shot);  // Agrega el disparo al array
 }
 
+// Función para inicializar el juego una vez cargadas las imágenes
+function initGame() {
+    ship.image = shipImage; // Asignar la imagen cargada a la nave
+    initAliens();
+    update();
+}
+
 // Inicializa los marcianos y empieza el juego
-initAliens();
-update();
+// initAliens(); // Se llama dentro de initGame
+// update(); // Se llama dentro de initGame
 
 // Event listeners para los botones
 document.getElementById('pauseButton').addEventListener('click', () => {
